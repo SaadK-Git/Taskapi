@@ -61,3 +61,38 @@ We are subjected with two models,namely Category and Product.As mentioned in the
 
     					category: Category 
 			
+3.)API Walkthrough : The apis are mainly divided into two : The one for Categories and the other for Products.
+	1.)Below is the api info with regards to categories:
+	
+		## Category APIs
+				GET /api/categories?page={pageNumber}  
+				Used to get categories with pagination (page number can be changed).
+				
+				POST /api/categories  
+				Creates a new category.
+				
+				GET /api/categories/{id}  
+				Fetch a category using its id.
+				
+				PUT /api/categories/{id}  
+				Update category details using id.
+				
+				DELETE /api/categories/{id}  
+				Deletes a category by id.
+				
+	##Product APIS
+			## Product APIs
+					GET /api/products?page={pageNumber}  
+					Used to get products with pagination (can change page number).
+					
+					POST /api/products  
+					Creates a new product.
+					
+					GET /api/products/{id}  
+					Fetch a product using its id.
+					
+					PUT /api/products/{id}  
+					Update product details using id.
+					
+					DELETE /api/products/{id}  
+					Deletes a product by id.
