@@ -1,4 +1,5 @@
 1.)Steps to run the application: 
+
     a.) Run the following command to install all the necessary packages:
         "pip install -r requirements.txt"
     
