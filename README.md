@@ -79,9 +79,8 @@ We are subjected with two models,namely Category and Product.As mentioned in the
 				
 				DELETE /api/categories/{id}  
 				Deletes a category by id.
-				
-	##Product APIS
-			## Product APIs
+	
+		## Product APIs
 					GET /api/products?page={pageNumber}  
 					Used to get products with pagination (can change page number).
 					
