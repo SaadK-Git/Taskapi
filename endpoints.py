@@ -1,4 +1,4 @@
-from models import Product, Category, ProductResponse
+from models import Product, Category, ProductResponse,InputCategory,InputProduct
 from database import get_db
 from sqlalchemy.orm import Session, joinedload
 from fastapi import APIRouter, Depends, HTTPException
@@ -13,6 +13,7 @@ def get_category_by_id(category_id: int, db: Session = Depends(get_db)):
     if not category:
         raise HTTPException(status_code=404, detail="Category not found")
     return category
+
 @router.get("/categories", response_model=list[Category])
 def get_category(page : int,db: Session = Depends(get_db)):
     if page < 1:
@@ -23,7 +24,7 @@ def get_category(page : int,db: Session = Depends(get_db)):
     return category
 
 @router.post("/categories")
-def create_category(category: Category, db: Session = Depends(get_db)):
+def create_category(category: InputCategory, db: Session = Depends(get_db)):
     if db.query(DBCategory).filter(DBCategory.id == category.id).first():
         raise HTTPException(status_code=400, detail="Category with this ID already exists")
     db.add(DBCategory(**category.model_dump()))
@@ -67,7 +68,7 @@ def get_product(page : int,db: Session = Depends(get_db)):
     return product
 
 @router.post("/products")
-def create_product(product: Product, db: Session = Depends(get_db)):
+def create_product(product: InputProduct, db: Session = Depends(get_db)):
     category = db.query(DBCategory).filter(DBCategory.id == product.category_id)
     if not category:
         raise HTTPException(status_code=400, detail="Category with this ID does not exist")

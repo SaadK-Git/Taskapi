@@ -1,7 +1,13 @@
 from pydantic import BaseModel
+
 class Category(BaseModel):
     id: int | None = None
     name: str | None = None
+
+class InputCategory(BaseModel):
+    id : int
+    name : str
+
 class Product(BaseModel):
     id: int | None = None
     name: str | None = None
@@ -10,6 +16,13 @@ class Product(BaseModel):
     category_id: int | None = None
 
     # category: Category | None = None
+
+class InputProduct(BaseModel):
+    id: int
+    name: str
+    price: int
+    description: str
+    category_id: int
 
 class ProductResponse(BaseModel):
     id: int | None = None
