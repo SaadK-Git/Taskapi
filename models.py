@@ -5,11 +5,9 @@ class Category(BaseModel):
     name: str | None = None
 
 class InputCategory(BaseModel):
-    id : int
     name : str
 
 class Product(BaseModel):
-    id: int | None = None
     name: str | None = None
     price: int | None = None
     description: str | None = None
@@ -18,7 +16,6 @@ class Product(BaseModel):
     # category: Category | None = None
 
 class InputProduct(BaseModel):
-    id: int
     name: str
     price: int
     description: str
