@@ -4,11 +4,13 @@ from database import Base, engine
 from contextlib import asynccontextmanager
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    # This is startup code that helps to create tables in the database when the application starts. It ensures that the necessary tables are set up before handling any requests.
+    #App starts..
     Base.metadata.create_all(bind=engine)
     print("Tables created successfully!")
 
     yield
+    
+    #App ends..
 
 app = FastAPI(lifespan=lifespan)
 
