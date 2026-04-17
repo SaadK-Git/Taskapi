@@ -15,6 +15,8 @@ def get_category_by_id(category_id: int, db: Session = Depends(get_db)):
     return category
 @router.get("/categories", response_model=list[Category])
 def get_category(page : int,db: Session = Depends(get_db)):
+    if page < 1:
+        page = 1
     category = db.query(DBCategory).offset((page-1)*5).limit(5).all() #considering 5 items per page
     if not category:
         raise HTTPException(status_code=404, detail="Category not found")
@@ -57,6 +59,8 @@ def get_product_by_id(product_id: int, db: Session = Depends(get_db)):
 
 @router.get("/products", response_model=list[ProductResponse])
 def get_product(page : int,db: Session = Depends(get_db)):
+    if page < 1:
+        page = 1
     product = db.query(DBProduct).options(joinedload(DBProduct.category)).offset((page-1)*5).limit(5).all() #considering 5 items per page
     if not product:
         raise HTTPException(status_code=404, detail="Product not found")
