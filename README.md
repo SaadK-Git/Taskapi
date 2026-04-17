@@ -35,13 +35,11 @@ We are subjected with two models,namely Category and Product.As mentioned in the
 
 	c.)Corresponding to the database models,we also use pydantic models for requests sent by clients,since they help in validation.
 				1.)Category:
-					i)id -- integer 
-					ii)name -- string
+					i)name -- string
 				2.)Product:
-					i)id -- integer
-					ii)name -- string
-					iii)price -- integer
-					iv)description -- string
+					i)name -- string
+					ii)price -- integer
+					iii)description -- string
 			
 				The above models are used for request to the server,helping validation.
 				Apart from them,we use another pydantic model to send the response.
@@ -53,11 +51,10 @@ We are subjected with two models,namely Category and Product.As mentioned in the
 			
 				
 				ProductResponse
-    					id -- integer 
-    					name --  string
-    					price -- integer 
-    					description: string
-    					category_id: integer
+					i)name --  string
+					ii)price -- integer 
+					iii)description: string
+					iv)category_id: integer
 
     					category: Category 
 			
@@ -70,12 +67,19 @@ We are subjected with two models,namely Category and Product.As mentioned in the
 				
 				POST /api/categories  
 				Creates a new category.
+				Request Body:
+					{
+					"name": "string"
+					}
 				
 				GET /api/categories/{id}  
 				Fetch a category using its id.
 				
 				PUT /api/categories/{id}  
-				Update category details using id.
+				Request Body:
+					{
+					"name": "string"
+					}
 				
 				DELETE /api/categories/{id}  
 				Deletes a category by id.
@@ -86,12 +90,26 @@ We are subjected with two models,namely Category and Product.As mentioned in the
 					
 					POST /api/products  
 					Creates a new product.
+					Request Body:
+						{
+							"name": "string",
+							"price": 0,
+							"description": "string",
+							"category_id": 1
+						}
 					
 					GET /api/products/{id}  
 					Fetch a product using its id.
 					
 					PUT /api/products/{id}  
 					Update product details using id.
+					Request Body:
+						{
+							"name": "string",
+							"price": 0,
+							"description": "string",
+							"category_id": 1
+						}
 					
 					DELETE /api/products/{id}  
 					Deletes a product by id.
