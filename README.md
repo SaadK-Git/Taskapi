@@ -100,7 +100,20 @@ We are subjected with two models,namely Category and Product.As mentioned in the
 					
 					GET /api/products/{id}  
 					Fetch a product using its id.
-					
+					{
+						"id": Category_id,
+						"name": Name of the Category.
+					}
+					Response Structure : 
+						{
+						"id": Product id,
+						"name": Name of the Product,
+						"price": price of the product,
+						"description": description of the product,
+						"category_id": The id which product belongs to,
+						"category": Details of the category that product belongs to.
+					}
+										
 					PUT /api/products/{id}  
 					Update product details using id.
 					Request Body:
