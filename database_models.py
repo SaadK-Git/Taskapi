@@ -5,13 +5,13 @@ from database import Base
 class Category(Base):
     __tablename__ = "categories"
     
-    id = Column(Integer, primary_key=True, index=True)
+    id = Column(Integer, primary_key=True, index=True,autoincrement=True)
     name = Column(String(255), nullable=False)
     products = relationship("Product", back_populates="category")
 class Product(Base):
     __tablename__ = "products"
     
-    id = Column(Integer, primary_key=True, index=True)
+    id = Column(Integer, primary_key=True, index=True,autoincrement=True)
     name = Column(String(255), nullable=False)
     description = Column(String(255), nullable=True)
     price = Column(Integer, nullable=False)
