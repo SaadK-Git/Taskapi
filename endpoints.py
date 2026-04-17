@@ -25,8 +25,8 @@ def get_category(page : int,db: Session = Depends(get_db)):
 
 @router.post("/categories")
 def create_category(category: InputCategory, db: Session = Depends(get_db)):
-    if db.query(DBCategory).filter(DBCategory.id == category.id).first():
-        raise HTTPException(status_code=400, detail="Category with this ID already exists")
+    if db.query(DBCategory).filter(DBCategory.name == category.name).first():
+        raise HTTPException(status_code=400, detail="Category with this name already exists")
     db.add(DBCategory(**category.model_dump()))
     db.commit()
     return JSONResponse(status_code=201, content={"message": "Category created successfully"})
@@ -72,8 +72,8 @@ def create_product(product: InputProduct, db: Session = Depends(get_db)):
     category = db.query(DBCategory).filter(DBCategory.id == product.category_id)
     if not category:
         raise HTTPException(status_code=400, detail="Category with this ID does not exist")
-    if db.query(DBProduct).filter(DBProduct.id == product.id).first():
-        raise HTTPException(status_code=400, detail="Product with this ID already exists")
+    if db.query(DBProduct).filter(DBProduct.name == product.name).first():
+        raise HTTPException(status_code=400, detail="Product with this name already exists")
     db.add(DBProduct(**product.model_dump()))
     db.commit()
     return JSONResponse(status_code=201, content={"message": "Product created successfully"})
